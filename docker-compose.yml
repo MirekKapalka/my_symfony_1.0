@@ -2,6 +2,17 @@ version: '3.8'
 
 services:
 
+  app:
+    ports: 
+      - 80:80
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/app/public
+    build:
+      context: .
+    volumes:
+      - .:/var/www/html
+      - ./config/vhost.conf:/etc/apache2/sites-available/000-default.conf
+
   web:
     image: nginx
     volumes:
